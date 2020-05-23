@@ -16,7 +16,7 @@ export class CockpitComponent implements OnInit {
   langs: Lang[];
   searchCriteria: SearchCriteria = new SearchCriteria();
 
-  @ViewChild('searchForm',{read:false,static:false})
+  @ViewChild('searchForm')
   sForm: NgForm;
 
   constructor(private localeService: LocaleitemService) { }
