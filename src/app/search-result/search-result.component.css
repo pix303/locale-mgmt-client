@@ -1,0 +1,14 @@
+.bundle-chip{
+    background-color: aqua;
+    padding: .5em;
+}
+
+.lang-chip{
+    background-color:bisque;
+    padding: 0.5em;
+}
+
+.key-chip{
+    background-color:yellowgreen;
+    padding: 0.5em;
+}

@@ -1,0 +1,19 @@
+<mat-selection-list>
+    <mat-list-option *ngFor="let localeitem of localeItems">
+        <p matLine>
+            <span class="bundle-chip">{{localeitem.bundle}}</span>
+            <span class="lang-chip">{{localeitem.lang}}</span>
+            <span>{{localeitem.content}}</span>
+        </p>
+        <p matLine>
+            <span class="key-chip">{{localeitem.key}}</span>
+        </p>
+    </mat-list-option>
+</mat-selection-list>
+
+
+<mat-nav-list #items>
+    <mat-list-item *ngFor="let localeitem of localeItems">
+      {{localeitem.content}}
+    </mat-list-item>
+  </mat-nav-list>

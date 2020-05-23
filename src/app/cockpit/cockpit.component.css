@@ -1,0 +1,24 @@
+.version{
+    font-size: smaller;
+    font-style: normal;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.toolbar-controls{
+    display: flex;
+    background-color: #dbdbdb;
+    padding: .5em;
+    padding-left: 1em;
+}
+
+.toolbar-controls mat-form-field{
+    margin-left: 0em;
+    margin-right: 0.5em;
+}
+
+#content-input{
+    width: 20em;
+}

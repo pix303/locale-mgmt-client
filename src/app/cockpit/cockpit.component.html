@@ -1,0 +1,38 @@
+<mat-toolbar color="primary">
+    <span>Locale Mgmt</span>
+    <span >&nbsp;</span>
+    <span class="version">v 0.0.1</span>
+  </mat-toolbar>
+
+
+  <div class="toolbar-controls">
+   
+    <form #searchForm="ngForm" (ngSubmit)="onSetSearchCriteria()">
+      <mat-form-field id="content-input">
+        <mat-label>Content</mat-label>
+        <input matInput placeholder="Text to search" value="" name="content" ngModel pattern=".{3,}">
+      </mat-form-field>
+    
+      <mat-form-field>
+        <mat-label>Bundle</mat-label>
+        <mat-select name="bundle" ngModel required>
+          <mat-option *ngFor="let bundle of bundles" [value]="bundle.key">
+            {{bundle.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Lang</mat-label>
+        <mat-select name="lang" ngModel>
+          <mat-option *ngFor="let lang of langs" [value]="lang.key">
+            {{lang.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-button [disabled]="!searchForm.valid"><mat-icon>search</mat-icon>Search</button>
+        
+    </form>
+
+</div>
