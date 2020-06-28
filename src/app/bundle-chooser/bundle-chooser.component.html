@@ -1,0 +1,11 @@
+<div>
+    <p>Choose the bundle to start</p>
+    <mat-form-field>
+        <mat-label>Bundle</mat-label>
+        <mat-select [formControl]="bundleControl">
+            <mat-option *ngFor="let bundle of bundles" [value]="bundle.key">
+                {{bundle.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>

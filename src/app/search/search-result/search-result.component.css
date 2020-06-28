@@ -1,0 +1,10 @@
+.main-line{
+    font-size: medium;
+}
+
+
+.key-chip{
+    font-family: 'Roboto Mono', monospace;
+    border-left: 1px crimson solid;
+    padding: 0.5em;
+}

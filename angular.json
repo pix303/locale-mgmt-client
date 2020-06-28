@@ -63,7 +63,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "locale-mgmt-client:build"
+            "browserTarget": "locale-mgmt-client:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -123,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "locale-mgmt-client"
+  "defaultProject": "locale-mgmt-client",
+  "cli": {
+    "analytics": "48ea3a02-7075-441e-90a6-81154bed73ec"
+  }
 }

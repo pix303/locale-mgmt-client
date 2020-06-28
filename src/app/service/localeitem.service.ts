@@ -44,7 +44,15 @@ export class LocaleitemService {
     );
   }
 
+  private currentBundle: Subject<Bundle> = new Subject<Bundle>();
+  public get currentBundle$():Observable<Bundle>{
+    return this.currentBundle.asObservable();
+  }
 
+  public setCurrentBundle(candidate:Bundle){
+    console.log("bundle",candidate)
+    this.currentBundle.next(candidate)
+  }
 
 
 
@@ -78,12 +86,12 @@ export class LocaleitemService {
 
 
 
-  //-----------------------
-  //----SEARCH RESULT------
-  //-----------------------
-  private localeItemsResult:Subject<LocaleItem[]> = new Subject<LocaleItem[]>();
+  //-------------------------------
+  //----LOCALEITEM REQUESTS------
+  //-------------------------------
+  private localeItemsSearchResult:Subject<LocaleItem[]> = new Subject<LocaleItem[]>();
   public get localeItemsResult$():Observable<LocaleItem[]>{
-    return this.localeItemsResult.asObservable();
+    return this.localeItemsSearchResult.asObservable();
   }
 
   public retriveLocaleItems( criteria: SearchCriteria){
@@ -91,8 +99,25 @@ export class LocaleitemService {
     if ( criteria.lang && criteria.lang != "ALL"){
       searchGetUrl += "/lang/" + criteria.lang;
     }
+    this.setCall(searchGetUrl,this.localeItemsSearchResult);
+  }
 
-    this.httpClient.get<LocaleItem[]>( searchGetUrl )
+
+  private localeItemsByKeyResult:Subject<LocaleItem[]> = new Subject<LocaleItem[]>();
+  public get localeItemsByKeyResult$():Observable<LocaleItem[]>{
+    return this.localeItemsByKeyResult.asObservable();
+  }
+
+  public retriveLocaleItemsByKey( id: string ){
+    let localeitemIdUrl = environment.apiUrl + "locale-item/" + id;
+    this.setCall(localeitemIdUrl,this.localeItemsByKeyResult);
+  }
+
+
+
+
+  private setCall( url: string, model:Subject<LocaleItem[]> ){
+    this.httpClient.get<LocaleItem[]>( url )
     .pipe(
       map( values => {
         return values.map( value =>{
@@ -108,7 +133,7 @@ export class LocaleitemService {
     )
     .subscribe(
       (values: LocaleItem[]) => {
-        this.localeItemsResult.next(values);
+        model.next(values);
       },
       (err:Error) => {
         console.error(err.message);

@@ -1,38 +1,32 @@
 <mat-toolbar color="primary">
-    <span>Locale Mgmt</span>
-    <span >&nbsp;</span>
-    <span class="version">v 0.0.1</span>
-  </mat-toolbar>
+  <a class="appname" href='/home'>Locale Mgmt</a>
+  <span>&nbsp;</span>
+  <span class="version">v 0.0.1</span>
+
+  <span class="spacer">&nbsp;</span>
+
+  <div *ngIf="!authService.loggedIn">
+    <button mat-button (click)="authService.login()">
+      <mat-icon aria-hidden="false" aria-label="actions icon">account_box</mat-icon>
+      Login
+    </button>
+
+  </div>
+
+  <div *ngIf="authService.loggedIn">
+    <span *ngIf="currentBundle">Bundle:&nbsp;</span>
+    <span>{{currentBundle}}</span>  
+    <button mat-button [matMenuTriggerFor]="menu">
+      <mat-icon aria-hidden="false" aria-label="actions icon">home</mat-icon>
+      Actions
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink='search' [disabled]="!currentBundle"><mat-icon aria-hidden="false" aria-label="actions icon">search</mat-icon>Search</button>
+      <button mat-menu-item><mat-icon aria-hidden="false" aria-label="actions icon">cloud_upload</mat-icon>Import</button>
+      <button mat-menu-item><mat-icon aria-hidden="false" aria-label="actions icon">cloud_download</mat-icon>Export</button>
+      <button mat-menu-item><mat-icon aria-hidden="false" aria-label="actions icon">account_box</mat-icon>Logout</button>
+    </mat-menu>
+  </div>
 
 
-  <div class="toolbar-controls">
-   
-    <form #searchForm="ngForm" (ngSubmit)="onSetSearchCriteria()">
-      <mat-form-field id="content-input">
-        <mat-label>Content</mat-label>
-        <input matInput placeholder="Text to search" value="" name="content" ngModel pattern=".{3,}">
-      </mat-form-field>
-    
-      <mat-form-field>
-        <mat-label>Bundle</mat-label>
-        <mat-select name="bundle" ngModel required>
-          <mat-option *ngFor="let bundle of bundles" [value]="bundle.key">
-            {{bundle.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Lang</mat-label>
-        <mat-select name="lang" ngModel>
-          <mat-option *ngFor="let lang of langs" [value]="lang.key">
-            {{lang.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <button mat-button [disabled]="!searchForm.valid"><mat-icon>search</mat-icon>Search</button>
-        
-    </form>
-
-</div>
+</mat-toolbar>
