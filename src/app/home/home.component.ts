@@ -11,34 +11,15 @@ import { AuthService } from '../service/auth.service';
 })
 export class HomeComponent implements OnInit {
 
-  userName: string = "";
+  currentUser = {name:""};
   isLoggedIn: boolean = false;
 
-  constructor( private authService:AuthService) { }
+  constructor( private authService:AuthService ) { }
 
   ngOnInit(): void {
-    this.authService.getUser$().subscribe(
-      (value) => console.log(value),
-      (err) => console.error(err)
+    this.authService.currentUser$.subscribe(
+      (value) => this.currentUser = value
     );
-
-    this.isLoggedIn = false;
-    this.authService.loggedIn$.subscribe(
-      (value) => {
-        if (value){
-          // this.authService.getUser$().subscribe(
-          //   (value) => {
-          //     console.log(value)
-          //     this.userName = value.name
-          //   }
-          // );
-
-          this.isLoggedIn = true;
-        }
-      },
-      (err) => console.error(err)
-    );
-
   }
 
 }

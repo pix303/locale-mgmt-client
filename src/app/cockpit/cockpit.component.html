@@ -6,10 +6,10 @@
   <span class="spacer">&nbsp;</span>
 
   <div *ngIf="!authService.loggedIn">
-    <button mat-button (click)="authService.login()">
+    <a mat-button href="/login">
       <mat-icon aria-hidden="false" aria-label="actions icon">account_box</mat-icon>
       Login
-    </button>
+    </a>
 
   </div>
 
@@ -24,7 +24,7 @@
       <button mat-menu-item routerLink='search' [disabled]="!currentBundle"><mat-icon aria-hidden="false" aria-label="actions icon">search</mat-icon>Search</button>
       <button mat-menu-item><mat-icon aria-hidden="false" aria-label="actions icon">cloud_upload</mat-icon>Import</button>
       <button mat-menu-item><mat-icon aria-hidden="false" aria-label="actions icon">cloud_download</mat-icon>Export</button>
-      <button mat-menu-item><mat-icon aria-hidden="false" aria-label="actions icon">account_box</mat-icon>Logout</button>
+      <button mat-menu-item (click)="logout()" ><mat-icon aria-hidden="false" aria-label="actions icon">account_box</mat-icon>Logout</button>
     </mat-menu>
   </div>
 

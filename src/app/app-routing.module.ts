@@ -9,8 +9,7 @@ import { BundleChooserComponent } from './bundle-chooser/bundle-chooser.componen
 const routes: Routes = [
 
   {path:'', component:HomeComponent},
-  {path:'home', component:HomeComponent},
-  {path:'callback', component:BundleChooserComponent},
+  {path:'welcome', component:HomeComponent},
   {path:'search', component:SearchComponent},
   {path:'localeitem-detail', component:LocaleitemDetailComponent},
 
